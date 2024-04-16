@@ -13,6 +13,10 @@ export default {
 
       fontFamily:{
         'sans': ['Arial'],
+      },
+
+      backgroundImage: {
+        'loginpage': "url('../assets/loginpic.png')",
       }
     },
 
