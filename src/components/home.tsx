@@ -9,8 +9,8 @@ export function Home() {
                 <img src={logo} alt="Logo Banese" />
 
                 <div className="flex gap-5">
-                    <Link to= '/register'><button className="w-64 h-16 rounded-[15px] border-green border-2 font-sans text-xl text-green  font-bold p-3 ">Entrar </button></Link>
-                    <button className="w-64 h-16 rounded-[15px] border-green border-2 font-sans text-xl font-bold p-3 bg-green text-white">Cadastre-se</button>
+                    <Link to= '/login'><button className="w-64 h-16 rounded-[15px] border-green border-2 font-sans text-xl text-green  font-bold p-3 ">Entrar </button></Link>
+                    <Link to= '/register'><button className="w-64 h-16 rounded-[15px] border-green border-2 font-sans text-xl font-bold p-3 bg-green text-white">Cadastre-se</button></Link>
 
                 </div>
 

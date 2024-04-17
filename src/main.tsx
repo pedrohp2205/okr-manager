@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client'
 
 import { Home } from './components/home.tsx'
 import { Register } from './components/register.tsx'
+import { Login } from './components/login.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider} from "react-router-dom"
 
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
   {
     path:"/register",
     element: <Register/>,
+  },
+
+  {
+    path:"/login",
+    element: <Login/>,
   }
 
 ])
