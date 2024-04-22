@@ -48,7 +48,7 @@ export function Login() {
                     </div>
                     
                     <div className="text-center">
-                        <button className="mt-[180px] bg-green rounded-full text-white border-2 w-full px-32 py-8 text-xl">Continuar</button>
+                        <Link to="/dashboard"><button className="mt-[180px] bg-green rounded-full text-white border-2 w-full px-32 py-8 text-xl">Continuar</button></Link>
 
                         <button className="mt-5 text-green text-xl">Esqueci Minha senha</button>
                     </div>
