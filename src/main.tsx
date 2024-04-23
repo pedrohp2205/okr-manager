@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 
 // import {App} from './app.tsx'
 
-import { Home } from './components/home.tsx'
-import { Register } from './components/register.tsx'
-import { Login } from './components/login.tsx'
-import { Dashboard } from './components/dashboard.tsx'
+import { Home } from './pages/home.tsx'
+import { Register } from './pages/register.tsx'
+import { Login } from './pages/login.tsx'
+import { Dashboard } from './pages/dashboard.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider} from "react-router-dom"
 

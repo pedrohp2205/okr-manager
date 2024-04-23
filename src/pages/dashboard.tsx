@@ -2,6 +2,8 @@ import logo from "../assets/logobanese.png"
 import { GrSearch } from "react-icons/gr";
 import perfil from "../assets/perfil.png"
 import { FaPlus } from "react-icons/fa6";
+import { HiTrash } from "react-icons/hi";
+
 export function Dashboard() {
 
     return(
@@ -31,6 +33,18 @@ export function Dashboard() {
         
                     <button className="flex items-center gap-5 h-16 w-[11.625rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg"><FaPlus />Novo OKR</button>
                     
+                </div>
+
+
+                <div className="flex mt-12 justify-between text-xl border-b pb-3">
+                    <p>Nome</p>
+
+                    <div className="flex justify-evenly flex-1 max-w-[1200px]">
+                        <p>Proprietario</p>
+                        <p>Data de criação</p>
+                        <p>Última modificação</p> 
+                        <HiTrash size={20}/>
+                    </div>
                 </div>
             </main>
         </div>
