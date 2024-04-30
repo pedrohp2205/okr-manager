@@ -2,7 +2,7 @@ import logo from "../assets/logobanese.png"
 import { GrSearch } from "react-icons/gr";
 import perfil from "../assets/perfil.png"
 import { FaPlus } from "react-icons/fa6";
-// import { HiTrash } from "react-icons/hi";
+import { HiTrash } from "react-icons/hi";
 import * as Dialog from '@radix-ui/react-dialog'
 import * as Popover from '@radix-ui/react-popover';
 import { X } from 'lucide-react'
@@ -10,15 +10,62 @@ import { FaGears } from "react-icons/fa6";
 import { IoLogOut } from "react-icons/io5";
 import { Link } from "react-router-dom"
 import { DashboardItem } from "../components/dashboard-item";
+import { ChangeEvent, useState } from "react";
+import { toast } from "sonner";
 
+
+interface Item {
+    id: string,
+    title: string,
+    creationDate: Date,
+    modificationDate: Date,
+}
 
 export function Dashboard() {
+
+
+    const [items, setItems] = useState<Item[]>([])
+
+    const [title, setTitle] = useState("")
+
+    const [open, setOpen] = useState(false)
+    const wait = () => new Promise((resolve) => setTimeout(resolve, 600));
+
+    function handleTitleChanged(event: ChangeEvent<HTMLInputElement>) {
+        setTitle(event.target.value)
+    }
+
+    function handleSaveItem() {
+        const newItem = {
+            id: crypto.randomUUID(),
+            title: title,
+            creationDate: new Date(),
+            modificationDate: new Date(),
+        }
+
+        if(title == "") {
+            toast.error("Campo Título vazio.")
+            return
+        }
+
+        setItems([newItem,...items])
+        
+        setTitle("")
+        toast.success("OKR Salvo com sucesso")
+        wait().then(() => setOpen(false))
+
+        
+
+
+
+        
+    }
 
 
 
     return(
         <Popover.Root>
-            <Dialog.Root>
+            <Dialog.Root open={open} onOpenChange={setOpen}>
                 <div>
                     <header>
                         <nav className=" h-24 px-12 py-3 flex border-b-[1px] border-[#d9d9d9] items-center justify-between">
@@ -46,19 +93,31 @@ export function Dashboard() {
                             
                         </div>
 
-{/* 
-                        <div className="flex mt-12 justify-between text-xl border-b pb-3">
-                            <p>Nome</p>
+                        <table className="text-black mt-10 w-full">
+                            <thead>
+                                <tr className="border-b  border-[#D9D9D9]">
+                                    <th className="py-2.5  text-left  text-xl " >Nome</th>
+                                    <th className="py-2.5  text-left text-xl ">Proprietário</th>
+                                    <th className="py-2.5 text-left  text-xl ">Data de Criação</th> 
+                                    <th className="py-2.5   text-left text-xl ">Ultima Modificação</th>
+                                    <th className="py-2.5 text-xl "> <HiTrash size={20} /></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* <DashboardItem dashboardItem={{
+                                    title:"Hello",
+                                    creationDate: new Date(),
+                                    modificationDate: new Date(),
+                                }} /> */}
 
-                            <div className="flex justify-evenly  flex-1 max-w-[1200px] ">
-                                <p >Proprietario</p>
-                                <p >Data de criação</p>
-                                <p >Última modificação</p> 
-                                <HiTrash size={20} />
-                            </div>
-                        </div> */}
+                                {items.map(item => {
+                                    return <DashboardItem key={item.id} dashboardItem={item}/>
+                                })}
 
-                        <DashboardItem></DashboardItem>
+                            </tbody>
+                        </table>
+
+                        
 
 
                     </main>
@@ -75,11 +134,13 @@ export function Dashboard() {
 
                         <div className="flex flex-col gap-12 ">
                             <h1 className="text-4xl text-black font-bold">Novo OKR</h1>
-                            <input type="text" placeholder="Título do Projeto" className="border-b border-[#D9D9D9] pb-2 pl-1 outline-none"/>
+                            <input type="text" onChange={handleTitleChanged} value={title} placeholder="Título do Projeto" className="border-b border-[#D9D9D9] pb-2 pl-1 outline-none"/> {/*Esse Input*/}
 
-                            <div className="flex gap-[0.625rem]">
-                                <button className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]"><FaPlus />Criar</button>
-                                <button className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]">Cancelar</button>
+                            <div className="flex gap-[0.625rem]">                            
+                                <button  onClick={handleSaveItem} className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]"><FaPlus />Criar</button>
+
+
+                                <Dialog.Close><button className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]">Cancelar</button></Dialog.Close>
                             </div>
                         </div> 
                     </Dialog.Content>
