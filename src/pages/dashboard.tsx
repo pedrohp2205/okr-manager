@@ -2,7 +2,7 @@ import logo from "../assets/logobanese.png"
 import { GrSearch } from "react-icons/gr";
 import perfil from "../assets/perfil.png"
 import { FaPlus } from "react-icons/fa6";
-import { HiTrash } from "react-icons/hi";
+// import { HiTrash } from "react-icons/hi";
 import * as Dialog from '@radix-ui/react-dialog'
 import * as Popover from '@radix-ui/react-popover';
 import { X } from 'lucide-react'
@@ -46,7 +46,7 @@ export function Dashboard() {
                             
                         </div>
 
-
+{/* 
                         <div className="flex mt-12 justify-between text-xl border-b pb-3">
                             <p>Nome</p>
 
@@ -56,12 +56,11 @@ export function Dashboard() {
                                 <p >Última modificação</p> 
                                 <HiTrash size={20} />
                             </div>
-                        </div>
+                        </div> */}
 
                         <DashboardItem></DashboardItem>
-                        <DashboardItem></DashboardItem>
-                        <DashboardItem></DashboardItem>
-                        <DashboardItem></DashboardItem>
+
+
                     </main>
                 </div>
 
