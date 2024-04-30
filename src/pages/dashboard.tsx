@@ -8,6 +8,8 @@ import * as Popover from '@radix-ui/react-popover';
 import { X } from 'lucide-react'
 import { FaGears } from "react-icons/fa6";
 import { IoLogOut } from "react-icons/io5";
+import { Link } from "react-router-dom"
+import { DashboardItem } from "../components/dashboard-item";
 
 
 export function Dashboard() {
@@ -48,13 +50,18 @@ export function Dashboard() {
                         <div className="flex mt-12 justify-between text-xl border-b pb-3">
                             <p>Nome</p>
 
-                            <div className="flex justify-evenly flex-1 max-w-[1200px]">
-                                <p>Proprietario</p>
-                                <p>Data de criação</p>
-                                <p>Última modificação</p> 
-                                <HiTrash size={20}/>
+                            <div className="flex justify-evenly  flex-1 max-w-[1200px] ">
+                                <p >Proprietario</p>
+                                <p >Data de criação</p>
+                                <p >Última modificação</p> 
+                                <HiTrash size={20} />
                             </div>
                         </div>
+
+                        <DashboardItem></DashboardItem>
+                        <DashboardItem></DashboardItem>
+                        <DashboardItem></DashboardItem>
+                        <DashboardItem></DashboardItem>
                     </main>
                 </div>
 
@@ -97,7 +104,7 @@ export function Dashboard() {
 
                             <div className="text-center flex text-xl gap-[10px]">
                                 <IoLogOut size={30}/>
-                                <button>Sair</button>
+                                <Link to="/" ><button>Sair</button></Link>
                             </div>
                         </div>
 

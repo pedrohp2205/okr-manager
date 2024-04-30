@@ -1,4 +1,4 @@
-import  loginpic  from "../assets/loginpic.png"
+import  loginpic  from "../assets/registerpic.png"
 import logo from "../assets/logo.png"
 import { FaAngleLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
