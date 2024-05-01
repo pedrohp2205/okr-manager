@@ -28,6 +28,7 @@ export function Dashboard() {
 
     const [title, setTitle] = useState("")
 
+
     const [open, setOpen] = useState(false)
     const wait = () => new Promise((resolve) => setTimeout(resolve, 600));
 
@@ -104,12 +105,9 @@ export function Dashboard() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* <DashboardItem dashboardItem={{
-                                    title:"Hello",
-                                    creationDate: new Date(),
-                                    modificationDate: new Date(),
-                                }} /> */}
 
+
+                                
                                 {items.map(item => {
                                     return <DashboardItem key={item.id} dashboardItem={item}/>
                                 })}

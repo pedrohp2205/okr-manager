@@ -7,6 +7,7 @@ import { Home } from './pages/home.tsx'
 import { Register } from './pages/register.tsx'
 import { Login } from './pages/login.tsx'
 import { Dashboard } from './pages/dashboard.tsx'
+import { Management } from './pages/management.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider} from "react-router-dom"
 import { Toaster } from 'sonner'
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
   {
     path:"/dashboard",
     element: <Dashboard/>,
+  },
+
+  {
+    path: "/management/:id",
+    element: <Management/>,
   }
 
 ])
