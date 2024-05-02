@@ -24,7 +24,15 @@ interface Item {
 export function Dashboard() {
 
 
-    const [items, setItems] = useState<Item[]>([])
+    const [items, setItems] = useState<Item[]>(() => {
+        const storedItems = localStorage.getItem("items")
+    
+        if (storedItems) {
+          return JSON.parse(storedItems)
+        }
+    
+        return []
+      })
 
     const [title, setTitle] = useState("")
 
@@ -48,8 +56,10 @@ export function Dashboard() {
             toast.error("Campo Título vazio.")
             return
         }
-
-        setItems([newItem,...items])
+        
+        const itemsArray = [newItem,...items]
+        setItems(itemsArray)
+        localStorage.setItem("notes", JSON.stringify(itemsArray))
         
         setTitle("")
         toast.success("OKR Salvo com sucesso")
