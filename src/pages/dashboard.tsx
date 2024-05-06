@@ -40,6 +40,8 @@ export function Dashboard() {
     const [open, setOpen] = useState(false)
     const wait = () => new Promise((resolve) => setTimeout(resolve, 600));
 
+    const [search, setSearch] = useState("")
+
     function handleTitleChanged(event: ChangeEvent<HTMLInputElement>) {
         setTitle(event.target.value)
     }
@@ -62,16 +64,29 @@ export function Dashboard() {
         localStorage.setItem("items", JSON.stringify(itemsArray))
         
         setTitle("")
-        toast.success("OKR Salvo com sucesso")
+        toast.success("OKR Criado com sucesso")
         wait().then(() => setOpen(false))
 
-        
-
-
-
-        
     }
 
+    function handleSearch(event:ChangeEvent<HTMLInputElement>) {
+        const query = event.target.value
+
+        setSearch(query)
+    }
+
+    function onItemDeleted(id: string) {
+        const itemsArray = items.filter(item => {
+            return item.id != id
+        })
+
+        setItems(itemsArray)
+        localStorage.setItem("items", JSON.stringify(itemsArray))
+    }
+
+    const filteredItems = search != ""
+        ? items.filter(item => item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())) 
+        : items
 
 
     return(
@@ -83,7 +98,7 @@ export function Dashboard() {
                             <img src={logo} alt="Logo Banese" />
                             <div className="flex max-h-12 max-w-[37.5rem] px-5 py-2 rounded-[30px]  bg-[#d3d3d3] items-center gap-5 shadow-md shadow-[#00000040]">
                                 <GrSearch size={25}/>
-                                <input type="text" placeholder="Buscar no OKR Manager" className=" text-xl bg-[#d3d3d3] h-12 w-[37.5rem] focus:outline-none placeholder-black "/>
+                                <input type="text" placeholder="Buscar no OKR Manager" className=" text-xl bg-[#d3d3d3] h-12 w-[37.5rem] focus:outline-none placeholder-black " onChange={handleSearch}/>
                             </div>
 
                             <div>
@@ -118,8 +133,8 @@ export function Dashboard() {
 
 
                                 
-                                {items.map(item => {
-                                    return <DashboardItem key={item.id} dashboardItem={item}/>
+                                {filteredItems.map(item => {
+                                    return <DashboardItem key={item.id} dashboardItem={item} onItemDeleted={onItemDeleted}/>
                                 })}
 
                             </tbody>
