@@ -59,7 +59,7 @@ export function Dashboard() {
         
         const itemsArray = [newItem,...items]
         setItems(itemsArray)
-        localStorage.setItem("notes", JSON.stringify(itemsArray))
+        localStorage.setItem("items", JSON.stringify(itemsArray))
         
         setTitle("")
         toast.success("OKR Salvo com sucesso")
