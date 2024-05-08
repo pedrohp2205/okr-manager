@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import logo from "../assets/logobanese.png"
 import perfil from "../assets/perfil.png"
 import { ChangeEvent, useState } from 'react';
+import { AnnualGoal } from "../components/anualgoal";
 
 interface Item {
     id: string;
@@ -42,13 +43,6 @@ export function Management() {
         }
     }
     
-
-    
-      
-      
-    
-
-
     
     return(
         <div>
@@ -56,12 +50,16 @@ export function Management() {
             <header>
                 <nav className=" h-24 px-12 py-3 flex border-b-[1px] border-[#d9d9d9] items-center justify-between">
                     <img src={logo} alt="Logo Banese" />
-                    <input type="text" className=" text-xl  h-7 w-full max-w-[43.75rem] focus:outline-none border-b border-[#d3d3d3] text-center " onChange={handleEditTitle } value={editedTitle}/>
+                    <input type="text" spellCheck={false} className=" text-xl  h-7 w-full max-w-[43.75rem] focus:outline-none border-b border-[#d3d3d3] text-center " onChange={handleEditTitle } value={editedTitle}/>
 
                     <img src={perfil} alt=""  className="max-w-20 max-h-20" />
 
                 </nav>
             </header>
+
+            <main className="p-5">
+                <AnnualGoal/>
+            </main>
         </div>
     )
 }

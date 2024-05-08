@@ -29,7 +29,7 @@ export function DashboardItem({dashboardItem, onItemDeleted}: dashboardItem) {
     return(
             
         <Dialog.Root open={open} onOpenChange={setOpen}>
-            <tr className="border-b  border-[#D9D9D9]">
+            <tr className="border-b  border-[#D9D9D9] hover:bg-[#D3D3D3]">
                 <td className=" py-2.5  text-left  text-xl"><Link to={`/management/${dashboardItem.id}`}>{dashboardItem.title}</Link></td>
                 <td className=" py-2.5  "><Link to={`/management/${dashboardItem.id}`}><img src={logo} className="size-10 ml-[35px]"/></Link></td>
                 <td className=" py-2.5  text-left text-xl"><Link to={`/management/${dashboardItem.id}`}>{formatDistanceToNow(dashboardItem.creationDate, {locale: ptBR, addSuffix: true}) }</Link></td>
@@ -47,7 +47,7 @@ export function DashboardItem({dashboardItem, onItemDeleted}: dashboardItem) {
                         </Dialog.Close>
 
                         <div className="flex flex-col gap-12 ">
-                            <h1 className="text-4xl text-black font-bold">Novo OKR</h1>
+                            <h1 className="text-4xl text-black font-bold">Excluir OKR</h1>
                             <p className="text-xl">Tem certeza que deseja excluir esta OKR?</p>
 
                             <div className="flex gap-[0.625rem]">                            
