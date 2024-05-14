@@ -37,7 +37,7 @@ const router = createBrowserRouter([
   {
     path: "/management/:id",
     element: <Management/>,
-  }
+  },
 
 ])
 

@@ -2,7 +2,16 @@ import { useParams } from "react-router-dom"
 import logo from "../assets/logobanese.png"
 import perfil from "../assets/perfil.png"
 import { ChangeEvent, useState } from 'react';
+import ReactFlow, { Controls, Background, Node, ConnectionMode, useEdgesState, Connection, addEdge, useNodesState } from 'reactflow';
+import 'reactflow/dist/style.css';
+import {white} from "tailwindcss/colors"
 import { AnnualGoal } from "../components/anualgoal";
+import { useCallback } from "react";
+import { AnnualKr } from "../components/anualkr";
+import { DefaultEdge } from "../components/edges/DefaultEdge";
+import { QuaterlyGoal } from "../components/quaterlygoal";
+import { FaHouse } from "react-icons/fa6";
+import { Link } from "react-router-dom"
 
 interface Item {
     id: string;
@@ -10,6 +19,33 @@ interface Item {
     creationDate: string;
     modificationDate: string;
 }
+
+const NODE_TYPES = {
+    anualgoal: AnnualGoal,
+    anualkr: AnnualKr,
+    quaterlygoal: QuaterlyGoal,
+}
+
+const EDGE_TYPES = {
+    default: DefaultEdge,
+}
+
+const INITIAL_NODES = [
+    {
+        id: crypto.randomUUID(),
+        type: "anualgoal",
+        position: {
+            x:0, 
+            y:0,
+
+        },
+        data: {},
+
+    }
+
+] satisfies Node[]
+
+
 
 export function Management() {
 
@@ -43,12 +79,20 @@ export function Management() {
         }
     }
     
+
+    const [edges, setEdges, onEdgesChange] = useEdgesState([])
+
+    const [nodes, setNodes, onNodesChange] = useNodesState(INITIAL_NODES)
+
+    const onConnect = useCallback((connection: Connection) => {
+        return setEdges(edges => addEdge(connection, edges))
+    }, [])
     
     return(
-        <div>
+        <div className="w-screen h-screen">
 
-            <header>
-                <nav className=" h-24 px-12 py-3 flex border-b-[1px] border-[#d9d9d9] items-center justify-between">
+            <header className="fixed w-full bg-white z-10">
+                <nav className=" h-24 px-12 py-3 flex border-b-[1px] border-[#d9d9d9] items-center justify-between ">
                     <img src={logo} alt="Logo Banese" />
                     <input type="text" spellCheck={false} className=" text-xl  h-7 w-full max-w-[43.75rem] focus:outline-none border-b border-[#d3d3d3] text-center " onChange={handleEditTitle } value={editedTitle}/>
 
@@ -56,10 +100,25 @@ export function Management() {
 
                 </nav>
             </header>
-
-            <main className="p-5">
-                <AnnualGoal/>
-            </main>
+            <Link to="/dashboard"><div className="fixed size-[2.813rem] z-10 top-[6.875rem] left-[3.125rem] bg-[#D3D3D3] rounded-[10px] flex items-center justify-center" ><FaHouse size={25}/></div></Link>
+            <ReactFlow
+                nodeTypes={NODE_TYPES}
+                edgeTypes={EDGE_TYPES}
+                nodes={nodes}
+                connectionMode={ConnectionMode.Strict}
+                edges={edges}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                onNodesChange={onNodesChange}
+                defaultEdgeOptions={{
+                    type: "default",
+                }}
+            >
+                <Background
+                    color={white}
+                />
+                <Controls/>
+            </ReactFlow>
         </div>
     )
 }
