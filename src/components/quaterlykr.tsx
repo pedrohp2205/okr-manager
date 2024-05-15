@@ -8,11 +8,12 @@ import calendarinfokr from "../assets/calendarinfokr.svg"
 import bellinfokr from "../assets/bellinfokr.svg"
 import rsinfokr from "../assets/rsinfokr.svg"
 
-export function AnnualKr(props: NodeProps) {
+export function QuaterlyKr(props: NodeProps) {
     const [isButtonVisible, setIsButtonVisible] = useState(false)
     const {setNodes} = useReactFlow()
 
     const {getNode} = useReactFlow()
+    
     const nodepos = getNode(props.id)
     const position = nodepos?.position
     
@@ -22,7 +23,7 @@ export function AnnualKr(props: NodeProps) {
                 ...prevNodes,
                 {
                     id: crypto.randomUUID(),
-                    type: 'quaterlygoal',
+                    type: 'activities',
                     position: { x: position.x + 230, y: position.y },
                     data: { /* dados opcionais do nó */ }
                 }
@@ -58,11 +59,11 @@ export function AnnualKr(props: NodeProps) {
                     <div className="bg-white  size-3 rounded-full flex content-center items-center justify-center ">
                         <img src={okrlogo} alt="" className="w-[0.5rem] h-[0.375rem] "/>
                     </div>
-                    <div className="text-[0.5rem] w-[7.188rem] h-[0.75rem] font-bold bg-white rounded-md pl-[0.313rem]">KR Anual</div>
+                    <div className="text-[0.5rem] w-[7.188rem] h-[0.75rem] font-bold bg-white rounded-md pl-[0.313rem]">KR Trimestral</div>
                 </div>
                 
                 <div className="flex">
-                    <textarea name="" id="" placeholder="Descrição do KR Anual" spellCheck={false} className="bg-transparent outline-none text-xs resize-none m-auto text-center overflow-auto flex justify-center items-center leading-9 max-h-10 placeholder:text-[0.625rem]"></textarea>
+                    <textarea name="" id="" placeholder="Descrição do KR Trimestral" spellCheck={false} className="bg-transparent outline-none text-xs resize-none m-auto text-center overflow-auto flex justify-center items-center leading-9 max-h-10 placeholder:text-[0.625rem]"></textarea>
                 </div>
 
                 {isButtonVisible && (

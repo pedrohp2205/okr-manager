@@ -10,17 +10,27 @@ export function QuaterlyGoal(props: NodeProps) {
 
     const {setNodes} = useReactFlow()
 
+      
+    const {getNode} = useReactFlow()
     
-    const addAnnualKr = () => {
-        setNodes((prevNodes) => [
-            ...prevNodes,
-            {
-                id: crypto.randomUUID(),
-                type: 'anualkr',
-                position: { x: 400, y: 100 },
-                data: { /* dados opcionais do nó */ }
-            }
-        ]);
+    const nodepos = getNode(props.id)
+    const position = nodepos?.position
+    
+    const addQuaterlyKr = () => {
+
+        
+        if (position) {
+            setNodes((prevNodes) => [
+                ...prevNodes,
+                {
+                    id: crypto.randomUUID(),
+                    type: 'quaterlykr',
+                    position: { x: position.x + 230, y: position.y },
+                    data: { /* dados opcionais do nó */ }
+                }
+            ]);
+        }
+       
 
        
     };
@@ -62,7 +72,7 @@ export function QuaterlyGoal(props: NodeProps) {
                     <div>
 
                     
-                        <button className="absolute right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold size-8 rounded-full mt-3 flex items-center justify-center" onClick={addAnnualKr}>
+                        <button className="absolute right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold size-8 rounded-full mt-3 flex items-center justify-center" onClick={addQuaterlyKr}>
                             <img src={botaookr} alt="" />
                         </button>
 

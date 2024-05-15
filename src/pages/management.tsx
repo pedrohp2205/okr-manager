@@ -12,6 +12,8 @@ import { DefaultEdge } from "../components/edges/DefaultEdge";
 import { QuaterlyGoal } from "../components/quaterlygoal";
 import { FaHouse } from "react-icons/fa6";
 import { Link } from "react-router-dom"
+import { QuaterlyKr } from "../components/quaterlykr";
+import { Activities } from "../components/activities";
 
 interface Item {
     id: string;
@@ -24,6 +26,8 @@ const NODE_TYPES = {
     anualgoal: AnnualGoal,
     anualkr: AnnualKr,
     quaterlygoal: QuaterlyGoal,
+    quaterlykr: QuaterlyKr,
+    activities: Activities,
 }
 
 const EDGE_TYPES = {
