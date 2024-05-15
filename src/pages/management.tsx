@@ -117,6 +117,7 @@ export function Management() {
                 defaultEdgeOptions={{
                     type: "default",
                 }}
+                fitView
             >
                 <Background
                     color={white}
