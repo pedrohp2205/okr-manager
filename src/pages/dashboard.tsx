@@ -10,7 +10,7 @@ import { FaGears } from "react-icons/fa6";
 import { IoLogOut } from "react-icons/io5";
 import { Link } from "react-router-dom"
 import { DashboardItem } from "../components/dashboard-item";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, KeyboardEvent } from "react";
 import { toast } from "sonner";
 
 
@@ -84,9 +84,17 @@ export function Dashboard() {
         localStorage.setItem("items", JSON.stringify(itemsArray))
     }
 
+
+    const handleKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.code == "Enter" ) {
+            handleSaveItem()
+        }
+    }
+
     const filteredItems = search != ""
         ? items.filter(item => item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())) 
         : items
+
 
 
     return(
@@ -157,10 +165,10 @@ export function Dashboard() {
 
                         <div className="flex flex-col gap-12 ">
                             <h1 className="text-4xl text-black font-bold">Novo OKR</h1>
-                            <input type="text" onChange={handleTitleChanged} value={title} placeholder="Título do Projeto" className="border-b border-[#D9D9D9] pb-2 pl-1 outline-none"/> {/*Esse Input*/}
+                            <input type="text" onChange={handleTitleChanged} value={title} placeholder="Título do Projeto" className="border-b border-[#D9D9D9] pb-2 pl-1 outline-none " onKeyUp={handleKeyUp}/> {/*Esse Input*/}
 
                             <div className="flex gap-[0.625rem]">                            
-                                <button  onClick={handleSaveItem} className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]"><FaPlus />Criar</button>
+                                <button onClick={handleSaveItem} className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]"><FaPlus />Criar</button>
 
 
                                 <Dialog.Close><button className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]">Cancelar</button></Dialog.Close>
