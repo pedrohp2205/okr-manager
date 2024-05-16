@@ -14,6 +14,7 @@ import { FaHouse } from "react-icons/fa6";
 import { Link } from "react-router-dom"
 import { QuaterlyKr } from "../components/quaterlykr";
 import { Activities } from "../components/activities";
+import logomobile from "../assets/logo.png"
 
 interface Item {
     id: string;
@@ -96,15 +97,16 @@ export function Management() {
         <div className="w-screen h-screen">
 
             <header className="fixed w-full bg-white z-10">
-                <nav className=" h-24 px-12 py-3 flex border-b-[1px] border-[#d9d9d9] items-center justify-between ">
-                    <img src={logo} alt="Logo Banese" />
-                    <input type="text" spellCheck={false} className=" text-xl  h-7 w-full max-w-[43.75rem] focus:outline-none border-b border-[#d3d3d3] text-center " onChange={handleEditTitle } value={editedTitle}/>
+                <nav className=" h-24 px-12 py-3 flex border-b-[1px] border-[#d9d9d9] items-center justify-between max-md:px-[0.62rem] ">
+                    <img src={logo} alt="Logo Banese" className="max-md:hidden"/>
+                    <img src={logomobile} alt="" className="hidden max-md:flex max-md:size-[3.125rem]"/>
+                    <input type="text" spellCheck={false} className=" text-xl  h-7 w-full max-w-[43.75rem] focus:outline-none border-b border-[#d3d3d3] text-center max-md:max-w-[9.3rem]" onChange={handleEditTitle } value={editedTitle}/>
 
-                    <img src={perfil} alt=""  className="max-w-20 max-h-20" />
+                    <img src={perfil} alt=""  className="max-w-20 max-h-20 max-sm:size-[2.5rem]" />
 
                 </nav>
             </header>
-            <Link to="/dashboard"><div className="fixed size-[2.813rem] z-10 top-[6.875rem] left-[3.125rem] bg-[#D3D3D3] rounded-[10px] flex items-center justify-center" ><FaHouse size={25}/></div></Link>
+            <Link to="/dashboard"><div className="fixed size-[2.813rem] z-10 top-[6.875rem] left-[3.125rem] bg-[#D3D3D3] rounded-[10px] flex items-center justify-center max-md:left-3" ><FaHouse size={25}/></div></Link>
             <ReactFlow
                 nodeTypes={NODE_TYPES}
                 edgeTypes={EDGE_TYPES}

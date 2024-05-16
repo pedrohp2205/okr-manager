@@ -32,8 +32,8 @@ export function DashboardItem({dashboardItem, onItemDeleted}: dashboardItem) {
             <tr className="border-b  border-[#D9D9D9] hover:bg-[#D3D3D3]">
                 <td className=" py-2.5  text-left  text-xl"><Link to={`/management/${dashboardItem.id}`}>{dashboardItem.title}</Link></td>
                 <td className=" py-2.5  "><Link to={`/management/${dashboardItem.id}`}><img src={logo} className="size-10 ml-[35px]"/></Link></td>
-                <td className=" py-2.5  text-left text-xl"><Link to={`/management/${dashboardItem.id}`}>{formatDistanceToNow(dashboardItem.creationDate, {locale: ptBR, addSuffix: true}) }</Link></td>
-                <td className=" py-2.5  text-left text-xl"><Link to={`/management/${dashboardItem.id}`}>{formatDistanceToNow(dashboardItem.modificationDate, {locale: ptBR, addSuffix: true}) }</Link></td>
+                <td className=" py-2.5  text-left text-xl max-md:hidden"><Link to={`/management/${dashboardItem.id}`}>{formatDistanceToNow(dashboardItem.creationDate, {locale: ptBR, addSuffix: true}) }</Link></td>
+                <td className=" py-2.5  text-left text-xl max-md:hidden"><Link to={`/management/${dashboardItem.id}`}>{formatDistanceToNow(dashboardItem.modificationDate, {locale: ptBR, addSuffix: true}) }</Link></td>
                 <Dialog.Trigger asChild><td className=" py-2.5  text-left text-xl"><button><HiTrash size={20}></HiTrash></button> </td></Dialog.Trigger>
             </tr> 
 
@@ -61,7 +61,7 @@ export function DashboardItem({dashboardItem, onItemDeleted}: dashboardItem) {
                                 </button>
 
 
-                                <Dialog.Close><button className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]">Cancelar</button></Dialog.Close>
+                                <Dialog.Close><button className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3] max-md:w-[9.312rem]">Cancelar</button></Dialog.Close>
                             </div>
                         </div> 
                     </Dialog.Content>

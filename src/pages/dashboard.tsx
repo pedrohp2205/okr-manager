@@ -12,6 +12,7 @@ import { Link } from "react-router-dom"
 import { DashboardItem } from "../components/dashboard-item";
 import { ChangeEvent, useState, KeyboardEvent } from "react";
 import { toast } from "sonner";
+import logomobile from "../assets/logo.png"
 
 
 interface Item {
@@ -102,28 +103,29 @@ export function Dashboard() {
             <Dialog.Root open={open} onOpenChange={setOpen}>
                 <div>
                     <header>
-                        <nav className=" h-24 px-12 py-3 flex border-b-[1px] border-[#d9d9d9] items-center justify-between">
-                            <img src={logo} alt="Logo Banese" />
+                        <nav className=" h-24 px-12 py-3 flex border-b-[1px] border-[#d9d9d9] items-center justify-between max-md:p-[0.62rem] max-md:gap-[1px] ">
+                            <img src={logo} alt="Logo Banese" className="max-md:hidden"/>
+                            <img src={logomobile} alt="" className="hidden max-md:flex max-md:size-[3.125rem]"/>
                             <div className="flex max-h-12 max-w-[37.5rem] px-5 py-2 rounded-[30px]  bg-[#d3d3d3] items-center gap-5 shadow-md shadow-[#00000040]">
                                 <GrSearch size={25}/>
-                                <input type="text" placeholder="Buscar no OKR Manager" className=" text-xl bg-[#d3d3d3] h-12 w-[37.5rem] focus:outline-none placeholder-black " onChange={handleSearch}/>
+                                <input type="text" placeholder="Buscar no OKR Manager" className=" text-xl bg-[#d3d3d3] h-12 w-[37.5rem] focus:outline-none placeholder-black max-md:w-[10.4375rem] max-md:h-[1rem] max-md:placeholder:text-[1rem]" onChange={handleSearch}/>
                             </div>
 
                             <div>
                                 <div className="flex gap-5">
-                                    <p className="text-xl text-right border-green border-b-4">Seja bem-vindo(a),<br /> undefined !</p>
-                                    <Popover.Trigger><img src={perfil} alt=""  className="max-w-20 max-h-20" /></Popover.Trigger>
+                                    <p className="text-xl text-right border-green border-b-4 max-md:hidden">Seja bem-vindo(a),<br /> undefined !</p>
+                                    <Popover.Trigger><img src={perfil} alt=""  className="max-w-20 max-h-20 max-md:size-[2.5rem]" /></Popover.Trigger>
                                 </div>
                             </div>
                         </nav>
                     </header>
 
 
-                    <main className="px-12 py-5">
-                        <div className="flex gap-12 items-center">
-                            <h1 className="text-4xl font-bold">Todas as OKRs</h1>
+                    <main className="px-12 py-5 max-md:px-[0.62rem]">
+                        <div className="flex gap-12 items-center max-md:justify-between">
+                            <h1 className="text-4xl font-bold max-md:text-[1.25rem] max-md:w-[9.2rem]">Todas as OKRs</h1>
 
-                            <Dialog.Trigger asChild><button className="flex items-center gap-5 h-16 w-[11.625rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg"><FaPlus />Novo OKR</button></Dialog.Trigger>
+                            <Dialog.Trigger asChild><button className="flex items-center gap-5 h-16 w-[11.625rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg max-md:w-[7.1rem] max-md:text-[0.675rem] max-md:gap-[0.62rem] max-md:h-[1.875rem] max-md:p-[1.25rem]"><FaPlus />Novo OKR</button></Dialog.Trigger>
                             
                         </div>
 
@@ -132,8 +134,8 @@ export function Dashboard() {
                                 <tr className="border-b  border-[#D9D9D9]">
                                     <th className="py-2.5  text-left  text-xl " >Nome</th>
                                     <th className="py-2.5  text-left text-xl ">Proprietário</th>
-                                    <th className="py-2.5 text-left  text-xl ">Data de Criação</th> 
-                                    <th className="py-2.5   text-left text-xl ">Ultima Modificação</th>
+                                    <th className="py-2.5 text-left  text-xl max-md:hidden">Data de Criação</th> 
+                                    <th className="py-2.5   text-left text-xl max-md:hidden">Ultima Modificação</th>
                                     <th className="py-2.5 text-xl "> <HiTrash size={20} /></th>
                                 </tr>
                             </thead>
@@ -171,7 +173,7 @@ export function Dashboard() {
                                 <button onClick={handleSaveItem} className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]"><FaPlus />Criar</button>
 
 
-                                <Dialog.Close><button className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3]">Cancelar</button></Dialog.Close>
+                                <Dialog.Close><button className="flex items-center justify-center text-center gap-5 h-16 w-[15.312rem] bg-[#d3d3d3] shadow-md shadow-[#00000040] p-5 text-xl rounded-lg hover:bg-[#a3a3a3] max-md:w-[9.312rem]">Cancelar</button></Dialog.Close>
                             </div>
                         </div> 
                     </Dialog.Content>

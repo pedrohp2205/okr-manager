@@ -9,12 +9,12 @@ export function Register() {
     return(
         <div className="flex">
             <div >
-                <img src={loginpic} alt="" className="max-h-screen w-[65rem] object-cover"/>
-                <img src={logo} alt="" className="absolute top-[0.8rem] m-[1.5rem]"/>
+                <img src={loginpic} alt="" className="max-h-screen w-[65rem] object-cover max-md:hidden"/>
+                <img src={logo} alt="" className="absolute top-[0.8rem] m-[1.5rem] max-md:hidden"/>
             </div>
 
-            <div className="p-5 mx-auto flex-1">
-                <div className="flex size-fit items-center">
+            <div className="p-5 mx-auto flex-1 px-0">
+                <div className="flex size-fit items-center max-md:absolute max-md:left-[1.3rem]">
                     <Link to="/"><FaAngleLeft  size={30} className="mx"/> </Link>
                     <Link to="/"><p className="font-bold">Voltar</p></Link>
                     
