@@ -121,7 +121,7 @@ export function QuaterlyKr(props: NodeProps) {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-[3.8rem]">
+                    <div className="flex items-center gap-[3.78rem]">
                         <p>Medição</p>
 
                         <div className="flex gap-[0.25rem] items-center">
@@ -137,7 +137,7 @@ export function QuaterlyKr(props: NodeProps) {
                         <p>Responsável</p>
 
                         <div className="flex items-center">
-                            <input type="text" className=" appearance-none w-[5.4rem] border-b border-white bg-transparent outline-none text-right inner" />
+                            <input type="text" className=" appearance-none w-[5rem] border-b border-white bg-transparent outline-none text-right inner" />
                         </div>
                     </div>
                 </div>

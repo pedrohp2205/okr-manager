@@ -1,7 +1,7 @@
 import okrlogo from "../assets/okr-logo.png"
 import { Handle, NodeProps, Position, useReactFlow } from 'reactflow';
-import { useState } from 'react';
-import botaookr from "../assets/botaookr.svg"
+import { KeyboardEvent, useState } from 'react';
+import listactivitiesplus from "../assets/listactivitiesplus.svg"
 import botaoxokr from "../assets/botaoxokr.svg"
 import { ListItem } from "./listitem";
 
@@ -17,19 +17,34 @@ export function Activities(props: NodeProps) {
 
     const {setNodes} = useReactFlow()
 
-    const [list, setList] = useState<Item[]>([
-        { id: 1, name: "Comprar pão", done: false,  },
-        { id: 2, name: "Comprar bolo", done: false,  },
-    ])
+    const [list, setList] = useState<Item[]>([])
 
-    
+    const [inputList, setInputList] = useState("")
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+        if (e.code == "Enter" && inputList !== "") {
+            handleAddTask()
+            setInputList("")
+        }
+    }
+
+    const handleAddTask = () => {
+        let newList = [...list]
+
+        newList.push({
+            id: list.length + 1,
+            name: inputList,
+            done: false,
+        })
+        setList(newList)
+    }
 
     return (
-        <div className="w-[12.5rem] h-[6.5rem]"
+        <div className="w-[12.5rem] h-[auto]  bg-transparent border border-transparent"
             onMouseEnter={() => setIsButtonVisible(true)} 
             onMouseLeave={() => setIsButtonVisible(false)} 
         >
-            <div className="w-[12.5rem] h-fit bg-[#D3D3D3] rounded-[10px] p-[5px] relative">
+            <div className="w-[12.5rem]  min-h-[3.5rem] h-fit bg-[#D3D3D3] rounded-[10px] p-[5px] relative mb-20">
                 <Handle 
                     id="left" 
                     type="target" 
@@ -47,7 +62,12 @@ export function Activities(props: NodeProps) {
                     {list.map((item, index) => (
                         <ListItem key={index} item={item}/>
                     ))}
-                    {/* Área de Adicionar nova tarefa */}
+                    
+                    <div className="flex">
+                        <img src={listactivitiesplus} alt=""/>
+                        <input spellCheck={false} type="text" placeholder="Item da lista" className="placeholder:italic ml-[0.313rem] bg-transparent outline-none" onChange={e=> setInputList(e.target.value)} onKeyUp={handleKeyUp} value={inputList}/>
+                    </div>
+
                 </div>
 
                 {isButtonVisible && (
