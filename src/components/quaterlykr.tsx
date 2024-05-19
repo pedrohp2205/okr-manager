@@ -1,12 +1,14 @@
 import okrlogo from "../assets/okr-logo.png"
 import { Handle, NodeProps, Position, useReactFlow } from 'reactflow';
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import botaookr from "../assets/botaookr.svg"
 import botaoxokr from "../assets/botaoxokr.svg"
 import infokrlogo from "../assets/infokrlogo.svg"
 import calendarinfokr from "../assets/calendarinfokr.svg"
 import bellinfokr from "../assets/bellinfokr.svg"
 import rsinfokr from "../assets/rsinfokr.svg"
+import * as Progress from '@radix-ui/react-progress';
+import porceinfokr from "../assets/porceinfokr.svg"
 
 export function QuaterlyKr(props: NodeProps) {
     const [isButtonVisible, setIsButtonVisible] = useState(false)
@@ -33,7 +35,47 @@ export function QuaterlyKr(props: NodeProps) {
        
     };
 
+    const [goal, setGoal] = useState<number>(0)
 
+    const [metering, setMetering] = useState<number>(0)
+ 
+    const [progress, setProgress] = useState<number>(0)
+
+    const [shouldShowRS, setShshouldShowRS] = useState(true)
+
+    function handleGoalChanged(e: ChangeEvent<HTMLInputElement>) {
+        const query = e.target.value
+        
+        setGoal(parseFloat(query))
+        progressBar(metering ,parseFloat(query))
+    }
+
+    function handleMeteringChanged(e: ChangeEvent<HTMLInputElement>) {
+        const query = e.target.value
+
+        setMetering(parseFloat(query))
+        progressBar(parseFloat(query), goal)
+    }
+
+
+    function progressBar(test1: any, test2: any) {
+        const result: number = (test1/test2) * 100
+
+        if (result > 0) {
+            setProgress(result)
+        }else {
+            setProgress(0)
+        }
+        
+    }
+    
+    function handleRsChanged() {
+        if (shouldShowRS) {
+            setShshouldShowRS(false)
+        } else {
+            setShshouldShowRS(true)
+        }
+    }
     
 
     
@@ -62,8 +104,20 @@ export function QuaterlyKr(props: NodeProps) {
                     <div className="text-[0.5rem] w-[7.188rem] h-[0.75rem] font-bold bg-white rounded-md pl-[0.313rem]">KR Trimestral</div>
                 </div>
                 
-                <div className="flex">
+                <div className="flex flex-col">
                     <textarea name="" id="" placeholder="Descrição do KR Trimestral" spellCheck={false} className="bg-transparent outline-none text-xs resize-none m-auto text-center overflow-auto flex justify-center items-center leading-9 max-h-10 placeholder:text-[0.625rem]"></textarea>
+                    <Progress.Root
+                        className="relative overflow-hidden bg-white rounded-full w-[3.875rem] h-[0.75rem] ml-32"
+                        style={{
+                        transform: 'translateZ(0)',
+                        }}
+                        value={progress}
+                    >
+                        <Progress.Indicator
+                            className="bg-green w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
+                            style={{ transform: `translateX(-${100 - progress}%)` }}
+                        />
+                    </Progress.Root>
                 </div>
 
                 {isButtonVisible && (
@@ -114,10 +168,16 @@ export function QuaterlyKr(props: NodeProps) {
 
                         <div className="flex gap-[0.25rem] items-center">
                             <div className="bg-white  size-3 rounded-[4px] flex content-center items-center justify-center ">
-                                <img src={rsinfokr} alt="" className="w-[0.5rem] h-[0.375rem] "/>
+                                {
+                                    shouldShowRS ? (
+                                        <button onClick={handleRsChanged} className="outline-none"><img src={rsinfokr} alt="" className="w-[0.5rem] h-[0.375rem] "/></button>
+                                    ):(
+                                        <button onClick={handleRsChanged} className="outline-none"><img src={porceinfokr} alt="" className="w-[0.5rem] h-[0.375rem] "/></button>
+                                    )
+                                }
                                 
                             </div>
-                            <input type="number" className="w-[4.4rem] border-b border-white bg-transparent outline-none text-right"  />
+                            <input type="number" className="w-[4.4rem] border-b border-white bg-transparent outline-none text-right"  onChange={handleGoalChanged}/>
                         </div>
                     </div>
 
@@ -126,10 +186,16 @@ export function QuaterlyKr(props: NodeProps) {
 
                         <div className="flex gap-[0.25rem] items-center">
                             <div className="bg-white  size-3 rounded-[4px] flex content-center items-center justify-center ">
-                                <img src={rsinfokr} alt="" className="w-[0.5rem] h-[0.375rem] "/>
+                                {
+                                    shouldShowRS ? (
+                                        <button onClick={handleRsChanged} className="outline-none"><img src={rsinfokr} alt="" className="w-[0.5rem] h-[0.375rem] "/></button>
+                                    ):(
+                                        <button onClick={handleRsChanged} className="outline-none"><img src={porceinfokr} alt="" className="w-[0.5rem] h-[0.375rem] "/></button>
+                                    )
+                                }
                                 
                             </div>
-                            <input type="number" className="w-[4.4rem] border-b border-white bg-transparent outline-none text-right" />
+                            <input type="number" className="w-[4.4rem] border-b border-white bg-transparent outline-none text-right" onChange={handleMeteringChanged}/>
                         </div>
                     </div>
 
