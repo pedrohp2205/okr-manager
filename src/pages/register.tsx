@@ -52,7 +52,7 @@ export function Register() {
 
 
                         <div className="text-center">
-                            <button className="mt-[120px] bg-green rounded-full text-white border-2 w-full px-32 py-8 text-xl">Continuar</button>
+                            <Link to="/login"><button className="mt-[120px] bg-green rounded-full text-white border-2 w-full px-32 py-8 text-xl">Continuar</button></Link>
                         </div>
                     </form>
                 </div>
