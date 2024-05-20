@@ -1,8 +1,5 @@
 import { HiTrash } from "react-icons/hi";
 import logo from "../assets/perfil.png"
-import { formatDistanceToNow } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import { Link } from "react-router-dom";
 import * as Dialog from '@radix-ui/react-dialog'
 import { useState } from "react";
 import { X } from 'lucide-react'
