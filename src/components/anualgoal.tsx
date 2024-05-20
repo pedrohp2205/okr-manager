@@ -55,7 +55,7 @@ export function AnnualGoal(props: NodeProps) {
                 </div>
                 
                 <div className="flex">
-                    <textarea name="" id="" placeholder="Descrição do Objetivo Anual" spellCheck={false} className="bg-transparent outline-none text-xs resize-none m-auto text-center overflow-auto flex justify-center items-center leading-9 max-h-10 placeholder:text-[0.625rem]"></textarea>
+                    <textarea name="" id="" placeholder="Descrição do Objetivo Anual" spellCheck={false} className="bg-transparent outline-none text-[0.625rem] resize-none m-auto text-center overflow-auto flex justify-center items-center mt-2 max-h-10 placeholder:text-[0.625rem]"></textarea>
                 </div>
 
                 {isButtonVisible && (

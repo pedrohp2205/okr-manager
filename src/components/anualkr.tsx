@@ -9,6 +9,8 @@ import bellinfokr from "../assets/bellinfokr.svg"
 import rsinfokr from "../assets/rsinfokr.svg"
 import * as Progress from '@radix-ui/react-progress';
 import porceinfokr from "../assets/porceinfokr.svg"
+import { toast } from "sonner";
+import TextareaAutosize from "react-textarea-autosize";
 
 export function AnnualKr(props: NodeProps) {
     const [isButtonVisible, setIsButtonVisible] = useState(false)
@@ -61,11 +63,19 @@ export function AnnualKr(props: NodeProps) {
     function progressBar(test1: any, test2: any) {
         const result: number = (test1/test2) * 100
 
+
+        if (test1 > test2) {
+            toast.error("A medição não pode ser maior que a meta.")
+            return
+        }
+
         if (result > 0) {
             setProgress(result)
         }else {
             setProgress(0)
         }
+
+
         
     }
     
@@ -77,15 +87,15 @@ export function AnnualKr(props: NodeProps) {
         }
     }
 
-    
+  
 
     
     return (
-        <div className="w-[12.5rem] h-[6.5rem]"
+        <div className="w-[12.5rem] h-[auto]  bg-transparent"
             onMouseEnter={() => setIsButtonVisible(true)} 
             onMouseLeave={() => setIsButtonVisible(false)} 
         >
-            <div className="w-[12.5rem] h-fit bg-[#D3D3D3] rounded-[10px] p-[5px] relative ">
+            <div className="w-[12.5rem]  min-h-16 h-fit bg-[#D3D3D3] rounded-[10px] p-[5px] relative ">
                 <Handle 
                     id="left" 
                     type="target" 
@@ -106,7 +116,13 @@ export function AnnualKr(props: NodeProps) {
                 </div>
                 
                 <div className="flex flex-col">
-                    <textarea name="" id="" placeholder="Descrição do KR Anual" spellCheck={false} className="bg-transparent outline-none text-xs resize-none m-auto text-center overflow-auto flex justify-center items-center leading-9 max-h-10 placeholder:text-[0.625rem]"></textarea>
+                    <TextareaAutosize
+                        minRows={1}
+                        maxRows={10}
+                        spellCheck={false}
+                        placeholder="Descrição do KR Anual"
+                        className="bg-transparent outline-none text-[0.625rem] resize-none h-fit text-center leading-2 pt-2 placeholder:text-[0.625rem] mb-1"
+                    />
 
                     <Progress.Root
                         className="relative overflow-hidden bg-white rounded-full w-[3.875rem] h-[0.75rem] ml-32"
@@ -116,7 +132,7 @@ export function AnnualKr(props: NodeProps) {
                         value={progress}
                     >
                         <Progress.Indicator
-                            className="bg-green w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
+                            className="bg-[#33ED15] w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
                             style={{ transform: `translateX(-${100 - progress}%)` }}
                         />
                     </Progress.Root>
