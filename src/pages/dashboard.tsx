@@ -184,7 +184,7 @@ export function Dashboard() {
 
                 <Popover.Portal>
                     <Popover.Content
-                        className="rounded-[30px] px-4 py-5 w-[200px] bg-white shadow-[0_10px_38px_-10px_hsla(206,22%,7%,.35),0_10px_20px_-15px_hsla(206,22%,7%,.2)] "
+                        className="rounded-[30px] px-4 py-5 w-[200px] bg-white shadow-[0_10px_38px_-10px_hsla(206,22%,7%,.35),0_10px_20px_-15px_hsla(206,22%,7%,.2)] mr-5"
                         sideOffset={5}
                     >
 
