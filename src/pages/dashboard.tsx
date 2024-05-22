@@ -61,13 +61,19 @@ export function Dashboard() {
             return
         }
         
-        const itemsArray = [newItem,...items]
-        setItems(itemsArray)
-        localStorage.setItem("items", JSON.stringify(itemsArray))
-        
-        setTitle("")
-        toast.success("OKR Criado com sucesso")
-        wait().then(() => setOpen(false))
+
+        if (title.length <= 70 ) {
+            const itemsArray = [newItem,...items]
+            setItems(itemsArray)
+            localStorage.setItem("items", JSON.stringify(itemsArray))
+            
+            setTitle("")
+            toast.success("OKR Criado com sucesso")
+            wait().then(() => setOpen(false))
+        } else {
+            toast.error("O Título deve ter no máximo 70 caracteres")
+        }
+
 
     }
 
