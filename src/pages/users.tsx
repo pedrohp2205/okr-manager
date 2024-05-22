@@ -14,6 +14,7 @@ import { ChangeEvent, useState, KeyboardEvent } from "react";
 import { toast } from "sonner";
 import logomobile from "../assets/logo.png"
 import proflogo from "../assets/proflogo.png"
+import { FaKey } from "react-icons/fa";
 
 
 
@@ -196,15 +197,22 @@ export function Users() {
                     >
 
                         <div className="flex flex-col gap-1">
-                            <div className="text-center flex text-xl gap-[10px]">
-                                <FaGears size={30}/>
+                            <div className="text-center flex text-xl gap-[10px] items-center">
+                                <FaGears size={25}/>
                                 <p>Configurações</p>
+                            </div>
+                                
+                            <div className="h-[1px] w-full bg-[#D9D9D9]"></div>    
+
+                            <div className="text-center flex text-xl gap-[10px] items-center">
+                                <FaKey size={20}/>
+                                <Link to="/dashboard"><p>OKRs</p></Link>
                             </div>
 
                             <div className="h-[1px] w-full bg-[#D9D9D9]"></div>
 
-                            <div className="text-center flex text-xl gap-[10px]">
-                                <IoLogOut size={30}/>
+                            <div className="text-center flex text-xl gap-[10px] items-center">
+                                <IoLogOut size={25}/>
                                 <Link to="/" ><button>Sair</button></Link>
                             </div>
                         </div>
