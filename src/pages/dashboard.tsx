@@ -120,7 +120,7 @@ export function Dashboard() {
 
                             <div>
                                 <div className="flex gap-5">
-                                    <p className="text-xl text-right border-green border-b-4 max-md:hidden">Seja bem-vindo(a),<br /> undefined !</p>
+                                    <p className="text-xl text-right border-green border-b-4 max-md:hidden">Seja bem-vindo(a),<br /> Carla !</p>
                                     <Popover.Trigger><img src={perfil} alt=""  className="max-w-20 max-h-20 max-md:size-[2.5rem]" /></Popover.Trigger>
                                 </div>
                             </div>
